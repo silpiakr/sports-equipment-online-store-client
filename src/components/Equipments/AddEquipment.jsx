@@ -37,6 +37,7 @@ const AddEquipment = () => {
                     title: "Success!",
                     text: "Item Added Successfully!"
                   });
+                e.target.reset();
             }
         })
 

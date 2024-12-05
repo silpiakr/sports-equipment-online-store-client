@@ -5,7 +5,7 @@ import { IoMdMenu } from "react-icons/io";
 const Navbar = () => {
     const links = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/'>All Sports Equipment</Link></li>
+        <li><Link to='/equipments'>All Sports Equipment</Link></li>
         <li><Link to='/addEquipment'>Add Equipment</Link></li>
         <li><Link to='/updateEquipment'>Update Equipment</Link></li>
         <li><Link to='/myEquipmentList'>My Equipment List </Link></li>
@@ -23,7 +23,8 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-2xl font-bold">Sports Equipment Store</a>
+                <img src="https://i.ibb.co.com/rwHGzSg/logo.png" className='w-16 ' alt="logo" />
+                <a className="btn btn-ghost text-2xl font-bold">Sports BD</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
