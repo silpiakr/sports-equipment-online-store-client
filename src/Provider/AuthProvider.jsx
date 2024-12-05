@@ -26,14 +26,14 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    // const signOutUser = (email, password) => {
-    //     setLoading(true);
-    //     return signOut(auth)
-    // }
+    const signOutUser = (email, password) => {
+        setLoading(true);
+        return signOut(auth)
+    }
 
-    // const updateUserProfile = (updateData) => {
-    //     return updateProfile(auth.currentUser, updateData)
-    // }
+    const updateUserProfile = (updateData) => {
+        return updateProfile(auth.currentUser, updateData)
+    }
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -54,8 +54,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         signInUser,
         signInWithGoogle,
-        // signOutUser,
-        // updateUserProfile,
+        signOutUser,
+        updateUserProfile,
     }
     return (
         <AuthContext.Provider value={authInfo}>

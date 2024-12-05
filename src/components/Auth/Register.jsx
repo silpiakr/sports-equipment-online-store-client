@@ -39,7 +39,7 @@ const Register = () => {
         }
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
          if(!passwordRegex.test(password)){
-            setError('At least one uppercase, at least one lowercase');
+            setError('At least one uppercase, at least one lowercase  at least 8 charecters');
             return;
          }
 

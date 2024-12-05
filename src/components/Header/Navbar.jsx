@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
+import { AuthContext } from '../../Provider/AuthProvider';
+import { MdOutlineEdit } from 'react-icons/md';
 
 const Navbar = () => {
+    const { user, signOutUser } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+             //   console.log('Sign out successfully');
+            })
+            .catch(error => {
+              //  console.log('ERROR', error.message);
+            })
+    }
+
     const links = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/equipments'>All Sports Equipment</Link></li>
@@ -31,9 +45,40 @@ const Navbar = () => {
                    {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <Link to='/login' className="btn">Login</Link>
-                <Link to='register' className="btn ml-2">Register</Link>
+             <div className="navbar-end">
+                {user ? (
+                    <div className='flex items-center gap-3'>
+                        <div className='relative group'>
+                            <Link to='/profile'>
+                                {user.photoURL ? (
+                                    <img src={user.photoURL} alt="user" className='w-8 h-8 rounded-full cursor-pointer' />
+                                ) : (
+
+                                    <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
+
+                                )}
+                                <MdOutlineEdit className='absulate z-10 ml-6 -mt-3' />
+                            </Link>
+                            <div className='absolute left-0 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
+                                {user.displayName || 'User'}
+                            </div>
+                        </div>
+                        <button onClick={handleSignOut} className='btn btn-sm'>Sign Out</button>
+                    </div>
+                ) : (
+                    <>
+                        {
+                        user? 
+                        <Link to='/login' className='btn bg-base-200'>
+                        Login</Link>
+                        :
+                        <Link to='/login' className='btn bg-base-200'>
+                        Register</Link>
+                        }
+                    </>
+                    
+                )
+                }
             </div>
         </div>
     );
