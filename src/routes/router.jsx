@@ -6,10 +6,12 @@ import Banner from '../components/Header/Banner';
 import Footer from '../components/Footer/Footer';
 import AddEquipment from '../components/Equipments/AddEquipment';
 import UpdateEquipment from '../components/Equipments/UpdateEquipment';
-import Users from '../components/Users/Users';
+import Users from '../components/Auth/Users';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import Equipments from '../components/Equipments/Equipments';
 import Details from '../components/Equipments/Details';
+import Login from '../components/Auth/Login';
+import Register from '../components/Auth/Register';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
     {
         path: '/updateEquipment',
         element: <UpdateEquipment></UpdateEquipment>
+    },
+    {
+        path: '/login',
+        element: <Login></Login>
+    },
+    {
+        path: '/register',
+        element: <Register></Register>
     },
     {
         path: '/users',
