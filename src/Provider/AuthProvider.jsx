@@ -35,17 +35,17 @@ const AuthProvider = ({ children }) => {
     //     return updateProfile(auth.currentUser, updateData)
     // }
 
-    // useEffect(() => {
-    //     const unSubscribe = onAuthStateChanged(auth, currentUser => {
-    //         setUser(currentUser);
-    //         setLoading(false);
-    //     })
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+        })
 
-    //     return () => {
-    //         unSubscribe();
-    //     }
+        return () => {
+            unSubscribe();
+        }
 
-    // }, []);
+    }, []);
 
 
     const authInfo = {
