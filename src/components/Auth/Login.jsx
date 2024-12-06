@@ -5,6 +5,8 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase/firebase.init';
+import Footer from '../Footer/Footer';
+import Navbar from '../Header/Navbar';
 
 
 
@@ -72,6 +74,10 @@ const Login = () => {
     }
 
     return (
+       <>
+       <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
+        <Navbar></Navbar>
+       </div>
         <div className="hero bg-base-200 min-h-screen">
                 <div className=" flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
                 <div className="text-center">
@@ -118,6 +124,8 @@ const Login = () => {
                     }
                 </div>
         </div>
+       <Footer></Footer>
+       </>
     );
 };
 

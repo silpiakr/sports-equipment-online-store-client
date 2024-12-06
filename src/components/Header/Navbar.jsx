@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
 import { AuthContext } from '../../Provider/AuthProvider';
 import { MdOutlineEdit } from 'react-icons/md';
+import { FaRegCircleUser } from 'react-icons/fa6';
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const Navbar = () => {
         <li><Link to='/myEquipmentList'>My Equipment List </Link></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +34,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {links}
                     </ul>
                 </div>
@@ -72,7 +73,7 @@ const Navbar = () => {
                         <Link to='/login' className='btn bg-base-200'>
                         Login</Link>
                         :
-                        <Link to='/login' className='btn bg-base-200'>
+                        <Link to='/register' className='btn bg-base-200'>
                         Register</Link>
                         }
                     </>

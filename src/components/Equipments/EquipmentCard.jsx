@@ -9,7 +9,7 @@ const EquipmentCard = ({ equipment, equipments, setEquipments }) => {
     return (
         <div>
             <Link to={`/details/${_id}`}>
-                <div className="card bg-base-100 w-48 md:w-60 mx-auto shadow-lg">
+                <div className="card w-48 md:w-60 mx-auto shadow-lg">
                     <figure className='w-100 h-200'>
                         <img
                             src={photo}
