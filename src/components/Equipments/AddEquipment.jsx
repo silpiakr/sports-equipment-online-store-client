@@ -1,5 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 
 const AddEquipment = () => {
     const handleAddItem = e  => {
@@ -43,8 +45,12 @@ const AddEquipment = () => {
 
     }
     return (
-        <div className='max-w-7xl mx-auto bg-base-200 mt-20 md:px-28 md:py-16 p-6 space-y-8'>
-            <h2 className='text-5xl text-center rancho font-bold'>Add Equipmrnt</h2>
+        <>
+        <div className='max-w-7xl mx-auto'>
+        <Navbar></Navbar>
+        </div>
+        <div className='max-w-7xl mx-auto bg-base-200 mt-8 md:px-28 md:py-16 p-6 space-y-8'>
+            <h2 className='text-5xl text-black text-center rancho font-bold'>Add Equipmrnt</h2>
             <p className='text-center lg:px-20 text-[#1B1A1A]/70'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
             <form onSubmit={handleAddItem} className='space-y-6'>
                 {/* form row */}
@@ -146,10 +152,12 @@ const AddEquipment = () => {
                 </div>
                 {/* form button */}
                 <div>
-                    <input type="submit" name='btn' value="Add Item"  className="py-2 rounded-lg rancho bg-[#D2B48C] border text-2xl font-boldchu border-black w-full" />
+                    <input type="submit" name='btn' value="Add Item"  className="py-2 rounded-lg rancho bg-[#D2B48C] text-black border text-2xl font-boldchu border-black w-full" />
                 </div>
             </form>
         </div>
+        <Footer></Footer>
+        </>
     );
 };
 
