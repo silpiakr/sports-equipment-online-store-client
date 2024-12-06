@@ -17,28 +17,20 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Home></Home>,
-    },
-    {
-        path: '/navbar',
-        element: <Navbar></Navbar>
-    },
-    {
-        path: '/banner',
-        element: <Banner></Banner>
-    },
-    {
-        path: '/equipments',
-        element: <Equipments></Equipments>,
-        loader: () => fetch('http://localhost:5000/equipment')
-    },
-    {
-        path: '/details/:id',
-        element: <Details></Details>,
-        loader: ({params}) => fetch(`http://localhost:5000/equipment${params.id}`)
-    },
-    {
-        path: '/addEquipment',
-        element: <AddEquipment></AddEquipment>
+        children: [
+            {
+                path: '/navbar',
+                element: <Navbar></Navbar>
+            },
+            {
+                path: '/banner',
+                element: <Banner></Banner>
+            }, 
+            {
+                path: '/footer',
+                element: <Footer></Footer>
+            }, 
+        ]
     },
     {
         path: '/updateEquipment',
@@ -57,9 +49,20 @@ const router = createBrowserRouter([
         element: <Users></Users>
     },
     {
-        path: '/footer',
-        element: <Footer></Footer>
+        path: '/details/:id',
+        element: <Details></Details>,
+        loader: ({params}) => fetch(`http://localhost:5000/equipment${params.id}`)
     },
+    {
+        path: '/equipments',
+        element: <Equipments></Equipments>,
+        loader: () => fetch('http://localhost:5000/equipment')
+    },
+    {
+        path: '/addEquipment',
+        element: <AddEquipment></AddEquipment>
+    },
+    
     {
         path: '*',
         element: <ErrorPage></ErrorPage>

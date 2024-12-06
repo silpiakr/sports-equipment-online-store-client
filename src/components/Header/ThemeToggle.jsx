@@ -20,12 +20,14 @@ const ThemeToggle = () => {
     }
 
     return (
-        <div className="form-control">
+       <div className='max-w-7xl mx-auto'>
+         <div className="form-control">
             <label className="label justify-end cursor-pointer">
                 <span className='mr-3'>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
                 <input type="checkbox" className="toggle" checked={isDarkMode} onChange={handleToggle} />
             </label>
         </div>
+       </div>
     );
 };
 

@@ -46,10 +46,10 @@ const AddEquipment = () => {
     }
     return (
         <>
-        <div className='max-w-7xl mx-auto'>
+        {/* <div className='max-w-7xl mx-auto'>
         <Navbar></Navbar>
-        </div>
-        <div className='max-w-7xl mx-auto bg-base-200 mt-8 md:px-28 md:py-16 p-6 space-y-8'>
+        </div> */}
+        <div className='max-w-7xl mx-auto mt-8 md:px-28 md:py-16 p-6 space-y-8'>
             <h2 className='text-5xl text-black text-center rancho font-bold'>Add Equipmrnt</h2>
             <p className='text-center lg:px-20 text-[#1B1A1A]/70'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
             <form onSubmit={handleAddItem} className='space-y-6'>
@@ -156,7 +156,7 @@ const AddEquipment = () => {
                 </div>
             </form>
         </div>
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
         </>
     );
 };

@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 const EquipmentCard = ({ equipment, equipments, setEquipments }) => {
     const { _id, name, photo, price } = equipment;
-
-
-
+    
     return (
         <div>
             <Link to={`/details/${_id}`}>

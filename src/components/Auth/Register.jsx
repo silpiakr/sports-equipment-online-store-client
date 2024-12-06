@@ -93,9 +93,9 @@ const Register = () => {
     return (
         <>
         <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
         </div>
-        <div className="hero bg-base-200 min-h-screen pt-8">
+        <div className="hero min-h-screen pt-8">
             <div className=" flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold">Register Now!</h1>
@@ -151,7 +151,7 @@ const Register = () => {
                 <p className='text-gray-600 font-semibold'>Already Have An Account? <Link className='text-teal-700' to='/login'>Login</Link></p>
             </div>
         </div>
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
         </>
     );
 };

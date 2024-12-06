@@ -7,21 +7,26 @@ import ThemeToggle from '../Header/ThemeToggle';
 
 const Home = () => {
     return (
-        <div>
+        <div className='min-h-screen'>
             <header className='w-full lg:max-w-7xl mx-auto'>
                 <Navbar></Navbar>
             </header>
             <div>
                 <ThemeToggle></ThemeToggle>
             </div>
-            <div className='w-full lg:max-w-7xl mx-auto'>
-            <Banner></Banner>
+            <div>
+                <Banner></Banner>
             </div>
-            <main className='my-12 w-full lg:max-w-7xl mx-auto'>
-
+            <section>
                 <Equipments />
-
+            </section>
+            <main>
+              
+                
+            
             </main>
+
+            <Footer></Footer>
         </div>
     );
 };

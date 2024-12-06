@@ -1,6 +1,5 @@
 // import React from 'react';
 // import { Link, useLoaderData } from 'react-router-dom';
-// import Swal from 'sweetalert2';
 
 // const Details = () => {
 //     const loadedParams = useLoaderData();
