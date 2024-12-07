@@ -21,9 +21,9 @@ const Navbar = () => {
     const links = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/equipments'>All Sports Equipment</Link></li>
+        <li><Link to='/equipmentList'>Equipment list</Link></li>
         <li><Link to='/addEquipment'>Add Equipment</Link></li>
-        <li><Link to='/updateEquipment'>Update Equipment</Link></li>
-        <li><Link to='/myEquipmentList'>My Equipment List </Link></li>
+        {user && <li><Link to='/myEquipmentList'>My Equipment List </Link></li>}
     </>
     return (
         <div className="navbar">
@@ -67,16 +67,15 @@ const Navbar = () => {
                         <button onClick={handleSignOut} className='btn btn-sm'>Sign Out</button>
                     </div>
                 ) : (
-                    <>
-                        {
-                        user? 
+                    <div className='flex gap-2'>
+                         
                         <Link to='/login' className='btn bg-base-200'>
                         Login</Link>
                         :
                         <Link to='/register' className='btn bg-base-200'>
                         Register</Link>
-                        }
-                    </>
+                        
+                    </div>
                     
                 )
                 }

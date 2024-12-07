@@ -12,29 +12,37 @@ import Equipments from '../components/Equipments/Equipments';
 import Details from '../components/Equipments/Details';
 import Login from '../components/Auth/Login';
 import Register from '../components/Auth/Register';
+import MyEquipmentsList from '../components/Equipments/MyEquipmentsList';
+import EquipmentList from '../components/Equipments/EquipmentList';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Home></Home>,
-        children: [
-            {
-                path: '/navbar',
-                element: <Navbar></Navbar>
-            },
-            {
-                path: '/banner',
-                element: <Banner></Banner>
-            }, 
-            {
-                path: '/footer',
-                element: <Footer></Footer>
-            }, 
-        ]
     },
     {
-        path: '/updateEquipment',
-        element: <UpdateEquipment></UpdateEquipment>
+        path: '/navbar',
+        element: <Navbar></Navbar>
+    },
+    {
+        path: '/banner',
+        element: <Banner></Banner>
+    }, 
+    {
+        path: '/footer',
+        element: <Footer></Footer>
+    }, 
+    {
+        path: '/updateEquipment/:id',
+        element: <UpdateEquipment></UpdateEquipment>,
+        loader: async({params}) => {
+            const [equipment, users] = await Promise.all([
+                fetch(`http://localhost:5000/equipment/${params.id}`).then(res => res.json()),
+                fetch('http://localhost:5000/users').then(res => res.json())
+            ]);
+            return {equipment, users};
+            
+        }
     },
     {
         path: '/login',
@@ -51,7 +59,7 @@ const router = createBrowserRouter([
     {
         path: '/details/:id',
         element: <Details></Details>,
-        loader: ({params}) => fetch(`http://localhost:5000/equipment${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/equipment/${params.id}`)
     },
     {
         path: '/equipments',
@@ -60,7 +68,18 @@ const router = createBrowserRouter([
     },
     {
         path: '/addEquipment',
-        element: <AddEquipment></AddEquipment>
+        element: <AddEquipment></AddEquipment>,
+        loader: () => fetch('http://localhost:5000/users')
+    },
+    {
+        path: '/equipmentList',
+        element: <EquipmentList></EquipmentList>,
+        loader: () => fetch('http://localhost:5000/equipment')
+    },
+    {
+        path: '/myEquipmentList',
+        element: <MyEquipmentsList></MyEquipmentsList>,
+        loader: () => fetch('http://localhost:5000/equipment')
     },
     
     {

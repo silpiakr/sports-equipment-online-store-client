@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import EquipmentCard from './EquipmentCard';
-import Footer from '../Footer/Footer';
-import Navbar from '../Header/Navbar';
 
 const Equipments = () => {
-    const loadedequipments = useLoaderData();
-    const [equipments, setEquipments] = useState(loadedequipments || []);
+    const loadedequipments = useLoaderData() || [];
+    const [equipments, setEquipments] = useState(loadedequipments);
 
 
     return (

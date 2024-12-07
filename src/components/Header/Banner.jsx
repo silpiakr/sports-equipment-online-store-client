@@ -80,7 +80,7 @@ const Banner = () => {
             </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className='grid grid-cols-2  gap-8 bg-green-100 items-center justify-between w-full h-[400px] pl-20'>
+        <div className='grid grid-cols-2  gap-8 bg-red-50 items-center justify-between w-full h-[400px] pl-20'>
                 <div className='flex flex-col justify-center items-center w-2/3'>
                     <h2 className='text-gray-600 text-center py-3 font-bold text-4xl'>Skateboard</h2>
                     <h2 className='text-red-400 text-center py-3 font-bold text-4xl'>Up To 70% Discount</h2>

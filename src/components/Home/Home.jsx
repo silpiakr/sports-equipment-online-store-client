@@ -7,26 +7,33 @@ import ThemeToggle from '../Header/ThemeToggle';
 
 const Home = () => {
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen flex flex-col'>
+            {/* header section */}
             <header className='w-full lg:max-w-7xl mx-auto'>
                 <Navbar></Navbar>
             </header>
-            <div>
+            {/* toggle section */}
+            <section className='py-4'>
                 <ThemeToggle></ThemeToggle>
-            </div>
-            <div>
-                <Banner></Banner>
-            </div>
-            <section>
-                <Equipments />
             </section>
+            {/* banner section */}
+            <section className='py-6'>
+                <Banner></Banner>
+            </section>
+            {/* main section */}
+            <main>
+                <section>
+                    <Equipments />
+                </section>
+                
+            </main>
             <main>
               
                 
             
             </main>
 
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 };
