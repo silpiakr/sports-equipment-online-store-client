@@ -37,8 +37,8 @@ const router = createBrowserRouter([
         element: <UpdateEquipment></UpdateEquipment>,
         loader: async({params}) => {
             const [equipment, users] = await Promise.all([
-                fetch(`http://localhost:5000/equipment/${params.id}`).then(res => res.json()),
-                fetch('http://localhost:5000/users').then(res => res.json())
+                fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`).then(res => res.json()),
+                fetch('https://sports-equipment-online-store-server.vercel.app/users').then(res => res.json())
             ]);
             return {equipment, users};
             
@@ -59,27 +59,27 @@ const router = createBrowserRouter([
     {
         path: '/details/:id',
         element: <Details></Details>,
-        loader: ({ params }) => fetch(`http://localhost:5000/equipment/${params.id}`)
+        loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)
     },
     {
         path: '/equipments',
         element: <Equipments></Equipments>,
-        loader: () => fetch('http://localhost:5000/equipment')
+        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
     {
         path: '/addEquipment',
         element: <AddEquipment></AddEquipment>,
-        loader: () => fetch('http://localhost:5000/users')
+        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/users')
     },
     {
         path: '/equipmentList',
         element: <EquipmentList></EquipmentList>,
-        loader: () => fetch('http://localhost:5000/equipment')
+        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
     {
         path: '/myEquipmentList',
         element: <MyEquipmentsList></MyEquipmentsList>,
-        loader: () => fetch('http://localhost:5000/equipment')
+        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
     
     {
