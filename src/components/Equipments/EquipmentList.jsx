@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Navbar from '../Header/Navbar';
 
 const EquipmentList = () => {
     const loadedData = useLoaderData() || [];
     const [equipments, setEquipments] = useState(loadedData);
 
     return (
+        <>
+        <div className='max-w-7xl mx-auto'>
+            <Navbar></Navbar>
+        </div>
         <div className='max-w-7xl mx-auto my-8'>
             <h2 className='text-3xl text-center font-bold py-8'>Equipments: {equipments.length}</h2>
             <div className="overflow-x-auto">
@@ -40,6 +46,8 @@ const EquipmentList = () => {
                 </table>
             </div>
         </div>
+        <Footer></Footer>
+        </>
     );
 };
 

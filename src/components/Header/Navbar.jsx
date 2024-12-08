@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
 import { AuthContext } from '../../Provider/AuthProvider';
-import { MdOutlineEdit } from 'react-icons/md';
 import { FaRegCircleUser } from 'react-icons/fa6';
 
 const Navbar = () => {
@@ -49,16 +48,13 @@ const Navbar = () => {
              <div className="navbar-end">
                 {user ? (
                     <div className='flex items-center gap-3'>
-                        <div className='relative group'>
+                        <div className='group'>
                             <Link to='/profile'>
                                 {user.photoURL ? (
                                     <img src={user.photoURL} alt="user" className='w-8 h-8 rounded-full cursor-pointer' />
                                 ) : (
-
                                     <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
-
                                 )}
-                                <MdOutlineEdit className='absulate z-10 ml-6 -mt-3' />
                             </Link>
                             <div className='absolute left-0 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
                                 {user.displayName || 'User'}
@@ -71,10 +67,9 @@ const Navbar = () => {
                          
                         <Link to='/login' className='btn bg-base-200'>
                         Login</Link>
-                        :
                         <Link to='/register' className='btn bg-base-200'>
                         Register</Link>
-                        
+    
                     </div>
                     
                 )

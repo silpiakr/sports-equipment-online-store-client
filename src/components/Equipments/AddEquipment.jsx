@@ -51,9 +51,9 @@ const AddEquipment = () => {
     }
     return (
         <>
-            {/* <div className='max-w-7xl mx-auto'>
-        <Navbar></Navbar>
-        </div> */}
+            <div className='max-w-7xl mx-auto'>
+            <Navbar></Navbar>
+            </div>
             <div className='max-w-7xl mx-auto mt-8 md:px-28 md:py-16 p-6 space-y-8'>
                 <h2 className='text-5xl text-black text-center rancho font-bold'>Add Equipment</h2>
                 <p className='text-center lg:px-20 text-[#1B1A1A]/70'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
@@ -69,16 +69,10 @@ const AddEquipment = () => {
                                         <label className="label">
                                             <span className="label-text text-xl font-bold">Name: {user.name}</span>
                                         </label>
-                                        <label className="input-group">
-                                            <input type="text" name='photo' className="input input-bordered border-none w-full" />
-                                        </label>
                                     </div>
                                     <div className="form-control flex-row md:w-1/2">
                                         <label className="label">
                                             <span className="label-text text-xl font-bold">Email: {user.email}</span>
-                                        </label>
-                                        <label className="input-group">
-                                            <input type="text" name='name' className="input input-bordered border-none w-full" />
                                         </label>
                                     </div>
                                 </div>
@@ -188,7 +182,7 @@ const AddEquipment = () => {
                     </div>
                 </form>
             </div>
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
         </>
     );
 };

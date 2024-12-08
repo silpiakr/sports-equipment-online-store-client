@@ -2,8 +2,10 @@ import React from 'react';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import Banner from '../Header/Banner';
-import Equipments from '../Equipments/Equipments';
+// import Equipments from '../Equipments/Equipments';
 import ThemeToggle from '../Header/ThemeToggle';
+import Categories from '../Products/Categories';
+import Products from '../Products/Products';
 
 const Home = () => {
     return (
@@ -21,19 +23,22 @@ const Home = () => {
                 <Banner></Banner>
             </section>
             {/* main section */}
-            <main>
-                <section>
-                    <Equipments />
+            <main className='max-w-7xl mx-auto my-8'>
+                <section className='gap-4'>
+                    <Categories></Categories>
                 </section>
-                
+                <section className='w-7/10 mx-auto'>
+                    <Products></Products>
+                </section>
+
             </main>
             <main>
-              
-                
-            
+
+
+
             </main>
 
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
         </div>
     );
 };

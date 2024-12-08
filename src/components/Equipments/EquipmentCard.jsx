@@ -6,6 +6,7 @@ const EquipmentCard = ({ equipment, equipments, setEquipments }) => {
 
     return (
         <div>
+            
             <div className="card w-48 md:w-72 mx-auto shadow-lg">
                 <figure className='w-[150px] h-[150px] mx-auto'>
                     <img
