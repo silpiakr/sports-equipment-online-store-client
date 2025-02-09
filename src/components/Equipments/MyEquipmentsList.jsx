@@ -65,9 +65,9 @@ const MyEquipmentsList = () => {
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                <Link to={`/updateEquipment/${item.itemDetails._id}`}>
+                                {/* <Link>
                                     <button className="btn bg-black text-white"><MdEdit className='text-xl' /></button>
-                                </Link>
+                                </Link> */}
                                 <button onClick={() => handleDelete(item._id)} className="btn bg-red-500 text-white">
                                     <MdDelete className='text-xl' />
                                 </button>
@@ -82,3 +82,4 @@ const MyEquipmentsList = () => {
 };
 
 export default MyEquipmentsList;
+

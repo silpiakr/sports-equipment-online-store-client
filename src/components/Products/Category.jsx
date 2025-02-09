@@ -8,11 +8,16 @@ const Category = ({ categoryItem, categories, setCategories, }) => {
         <div className=''>
             <div className="card ">
                 <div className=" flex-col items-center justify-center">
-                    <Link to={`/details/${_id}`}>
+                    <Link to={`/categories/${category}`}>
                     <button className="font-semibold text-lg capitalize">
                         {category}
                     </button>
                     </Link>
+                    {/* <Link to={`/details/${_id}`}>
+                    <button className="font-semibold text-lg capitalize">
+                        {category}
+                    </button>
+                    </Link> */}
                 </div>
             </div>
         </div>

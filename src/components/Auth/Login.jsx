@@ -41,6 +41,9 @@ const Login = () => {
             setLoginError(true);
         })
 
+        localStorage.setItem('user', JSON.stringify(sanitizedUser));
+        setUser();
+
     }
     const googleSignIn = () => {
         signInWithGoogle()

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const AddEquipment = () => {
     const loadedUsers = useLoaderData();
-    const [users, setUsers] = useState(loadedUsers);
-    // const { userName, email } = loadedUsers
+    const { user } = useContext(AuthContext)
 
     const handleAddItem = e => {
         e.preventDefault();
@@ -59,24 +59,21 @@ const AddEquipment = () => {
                 <p className='text-center lg:px-20 text-[#1B1A1A]/70'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
                 <form onSubmit={handleAddItem} className='space-y-6'>
                     {/* form row */}
-
                     {/* User data */}
                     {
-                        users.map(
-                            user =>
-                                <div key={user._id} className='flex flex-row justify-between gap-6'>
-                                    <div className="form-control flex-row md:w-1/2">
-                                        <label className="label">
-                                            <span className="label-text text-xl font-bold">Name: {user.name}</span>
-                                        </label>
-                                    </div>
-                                    <div className="form-control flex-row md:w-1/2">
-                                        <label className="label">
-                                            <span className="label-text text-xl font-bold">Email: {user.email}</span>
-                                        </label>
-                                    </div>
-                                </div>
-                        )
+                        user ? (<div key={user._id} className='flex flex-row justify-between gap-6'>
+                        <div className="form-control flex-row md:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-xl font-bold">Name: {user.displayName}</span>
+                            </label>
+                        </div>
+                        <div className="form-control flex-row md:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-xl font-bold">Email: {user.email}</span>
+                            </label>
+                        </div>
+                    </div>)
+                    : ''
                     }
 
                     {/* form row */}

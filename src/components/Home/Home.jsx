@@ -2,10 +2,11 @@ import React from 'react';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import Banner from '../Header/Banner';
-// import Equipments from '../Equipments/Equipments';
 import ThemeToggle from '../Header/ThemeToggle';
 import Categories from '../Products/Categories';
-import Products from '../Products/Products';
+import Equipments from '../Equipments/Equipments';
+import Brand from '../OurBrand/Brand';
+import NewsLetter from '../NewsLetter/NewsLetter';
 
 const Home = () => {
     return (
@@ -27,15 +28,15 @@ const Home = () => {
                 <section className='gap-4'>
                     <Categories></Categories>
                 </section>
-                <section className='w-7/10 mx-auto'>
-                    <Products></Products>
+                <section>
+                    <Equipments></Equipments>
                 </section>
-
-            </main>
-            <main>
-
-
-
+                <section>
+                    <Brand></Brand>
+                </section>
+                <section>
+                    <NewsLetter></NewsLetter>
+                </section>
             </main>
 
             <Footer></Footer>

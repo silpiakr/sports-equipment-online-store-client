@@ -5,8 +5,9 @@ import Footer from '../Footer/Footer';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Details = () => {
-    const { user } = useContext(AuthContext);
+    const { user, cart, setCart} = useContext(AuthContext);
     const userId = user?.id;
+
     const loadedParams = useLoaderData();
     const { _id, name, photo, category, description, price, rating, customization, time, status } = loadedParams;
 
@@ -16,18 +17,21 @@ const Details = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userId, productId: _id }),
+            body: JSON.stringify({ userId: _id, itemId: _id }),
         })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.insertedId || data.acknowledged) {
-                    alert('Product added to My List!');
-                } else {
-                    alert('Failed to add product. Please try again.');
-                }
-            })
-            .catch((err) => console.error('Error adding to My List:', err));
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            if (data.insertedId || data.acknowledged) {
+                alert('Product added to My List!');
+            } else {
+                alert('Failed to add product. Please try again.');
+            }
+        })
+        .catch((err) => console.error('Error adding to My List:', err));
+    
     };
+    
 
     return (
         <>
@@ -52,8 +56,7 @@ const Details = () => {
                                 <p><span className="font-bold">Stock Status:</span> {status}</p>
                             </div>
                             <div className="flex justify-center items-end mt-4 gap-3">
-                                <button className="btn join-item mb-2 bg-green-500 text-white btn-sm">Buy Now</button>
-                                <button onClick={handleAddToMyList} className="btn join-item mb-2 bg-black text-white btn-sm">My List</button>
+                                <button onClick={handleAddToMyList} className="btn join-item mb-2 bg-black text-white btn-sm">Add To List</button>
                             </div>
                         </div>
                     </div>
@@ -65,3 +68,5 @@ const Details = () => {
 };
 
 export default Details;
+
+// {`/myList/${_id}`}

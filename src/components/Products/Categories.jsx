@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Category from './Category';
+import Category from '../Products/Category';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);

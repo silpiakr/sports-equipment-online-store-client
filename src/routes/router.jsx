@@ -5,7 +5,6 @@ import Navbar from '../components/Header/Navbar';
 import Banner from '../components/Header/Banner';
 import Footer from '../components/Footer/Footer';
 import AddEquipment from '../components/Equipments/AddEquipment';
-import UpdateEquipment from '../components/Equipments/UpdateEquipment';
 import Users from '../components/Auth/Users';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import Equipments from '../components/Equipments/Equipments';
@@ -14,13 +13,16 @@ import Login from '../components/Auth/Login';
 import Register from '../components/Auth/Register';
 import EquipmentList from '../components/Equipments/EquipmentList';
 import Categories from '../components/Products/Categories';
-import Products from '../components/Products/Products';
 import PrivateRoute from '../Route/PrivateRoute';
+import UpdateEquipment from '../components/Equipments/UpdateEquipment';
+import MyLists from '../components/Equipments/MyLists';
+import MyEquipmentsList from '../components/Equipments/MyEquipmentsList';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Home></Home>,
+        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment') 
     },
     {
         path: '/navbar',
@@ -35,18 +37,6 @@ const router = createBrowserRouter([
         element: <Footer></Footer>
     }, 
     {
-        path: '/updateEquipment/:id',
-        element: <PrivateRoute><UpdateEquipment></UpdateEquipment></PrivateRoute>,
-        loader: async({params}) => {
-            const [equipment, users] = await Promise.all([
-                fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`).then(res => res.json()),
-                fetch('https://sports-equipment-online-store-server.vercel.app/users').then(res => res.json())
-            ]);
-            return {equipment, users};
-            
-        }
-    },
-    {
         path: '/login',
         element: <Login></Login>
     },
@@ -59,14 +49,9 @@ const router = createBrowserRouter([
         element: <Users></Users>
     },
     {
-        path: 'categories',
+        path: 'categories/:category',
         element: <Categories></Categories>,
         
-    },
-    {
-        path: '/products',
-        element: <Products></Products>,
-        loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
     {
         path: '/details/:id',
@@ -84,6 +69,12 @@ const router = createBrowserRouter([
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/users')
     },
     {
+        path: '/updateEquipment/:id',
+        element: <UpdateEquipment></UpdateEquipment>,
+        loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)   
+    },
+    
+    {
         path: '/equipmentList',
         element: <PrivateRoute><EquipmentList></EquipmentList></PrivateRoute>,
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
@@ -92,6 +83,11 @@ const router = createBrowserRouter([
         path: '/myEquipmentList',
         element: <PrivateRoute></PrivateRoute>,
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
+    },
+    {
+        path: '/myList/:id',
+        element: <PrivateRoute></PrivateRoute>,
+        loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)
     },
     
     {
