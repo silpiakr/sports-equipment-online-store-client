@@ -45,9 +45,6 @@ const EquipmentList = () => {
                                                 Update
                                             </button>
                                         </Link>
-                                        <button onClick={() => handleDelete(item._id)} className="btn bg-red-500 text-white">
-                                            <MdDelete className='text-xl' />
-                                        </button>
                                     </td>
                                 </tr>)
                             }

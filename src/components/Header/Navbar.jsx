@@ -21,8 +21,7 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/equipmentList'>All Sports Equipment</Link></li>
         <li><Link to='/addEquipment'>Add Equipment</Link></li>
-        <li><Link to='/myList'>My Equipment List</Link></li>
-        {/* <li><Link to='/myEquipmentList'>My Equipment List</Link></li> */}
+        <li><Link to='/myEquipmentList'>My Equipment List</Link></li>
     </>
     return (
         <div className="navbar">

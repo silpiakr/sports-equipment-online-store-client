@@ -1,17 +1,58 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const MyEquipmentsList = () => {
+    const loaderData = useLoaderData()
+    const { _id } = loaderData;
     const { user } = useContext(AuthContext);
     const userId = user?._id;
     const [myList, setMyList] = useState([]);
 
+    // useEffect(() => {
+    //     fetch(`https://sports-equipment-online-store-server.vercel.app/my-list/${_id}`)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             const sortedList = data.sort((a, b) => b.itemDetails.price - a.itemDetails.price);
+    //             setMyList(sortedList);
+    //         })
+    //         .catch((err) => console.error('Error fetching My List:', err));
+    // }, [userId]);
+
+    // const handleDelete = (_id) => {
+    //     Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, delete it!"
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             fetch(`https://sports-equipment-online-store-server.vercel.app/${_id}`, {
+    //                 method: 'DELETE',
+    //             })
+    //                 .then((res) => res.json())
+    //                 .then((data) => {
+    //                     if (data.deletedCount > 0) {
+    //                         Swal.fire("Deleted!", "The item has been removed from your list.", "success");
+    //                         const remainingItems = myList.filter((item) => item._id !== id);
+    //                         setMyList(remainingItems);
+    //                     }
+    //                 })
+    //                 .catch((error) => console.error("Error deleting item:", error));
+    //         }
+    //     });
+    // };
+
     useEffect(() => {
+        if (!userId) return;
+
         fetch(`https://sports-equipment-online-store-server.vercel.app/my-list/${userId}`)
             .then((res) => res.json())
             .then((data) => {
@@ -32,14 +73,14 @@ const MyEquipmentsList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://sports-equipment-online-store-server.vercel.app/${_id}`, {
+                fetch(`https://sports-equipment-online-store-server.vercel.app/my-list/${_id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.deletedCount > 0) {
                             Swal.fire("Deleted!", "The item has been removed from your list.", "success");
-                            const remainingItems = myList.filter((item) => item._id !== id);
+                            const remainingItems = myList.filter((item) => item._id !== _id);
                             setMyList(remainingItems);
                         }
                     })
@@ -65,9 +106,11 @@ const MyEquipmentsList = () => {
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                {/* <Link>
-                                    <button className="btn bg-black text-white"><MdEdit className='text-xl' /></button>
-                                </Link> */}
+                                <Link to={`/updateEquipment/${equipment._id}`}>
+                                    <button className='btn bg-red-100'>
+                                        Update
+                                    </button>
+                                </Link>
                                 <button onClick={() => handleDelete(item._id)} className="btn bg-red-500 text-white">
                                     <MdDelete className='text-xl' />
                                 </button>

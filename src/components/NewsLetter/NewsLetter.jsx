@@ -1,25 +1,36 @@
-// import React from 'react';
+import React from 'react';
 
-// const NewsLetter = () => {
-//     return (
-//         <div
-//             className="hero min-h-screen"
-//             style={{
-//                 backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-//             }}>
-//             <div className="hero-overlay bg-opacity-60"></div>
-//             <div className="hero-content text-neutral-content text-center">
-//                 <div className="max-w-md">
-//                     <h1 className="mb-5 text-5xl font-bold">SUBSCRIBE <br />
-//                     FOR NEWSLETTER.</h1>
-//                     <p className="mb-5">
-//                     Sign up for our newsletter and stay up-to-date with the latest collection, the latest trends and the best deals!
-//                     </p>
-//                     <button className="btn btn-primary">Get Started</button>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
+const NewsLetter = () => {
+    return (
+        <div
+            className="hero"
+            style={{
+                backgroundImage: "url()",
+            }}>
+            <div className="hero-overlay bg-opacity-60"></div>
+            <div className="hero-content flex flex-col md:flex-row items-end justify-normal text-neutral-content text-left gap-0 py-12">
+                <div className="">
+                    <h1 className="mb-5 text-4xl font-bold">SUBSCRIBE <br />
+                        FOR NEWSLETTER.</h1>
+                    <p className="mb-5 w-2/3">
+                        Sign up for our newsletter and stay up-to-date with the latest collection, the latest trends and the best deals!
+                    </p>
+                </div>
+                <div className='flex items-center'>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Your email address..."
+                            className="input rounded-none input-bordered w-full max-w-xs"
+                        />
+                    </div>
+                    <div>
+                        <input type="submit" value="Submit" className='btn btn-accent rounded-none' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-// export default NewsLetter;
+export default NewsLetter;

@@ -81,14 +81,14 @@ const router = createBrowserRouter([
     },
     {
         path: '/myEquipmentList',
-        element: <PrivateRoute></PrivateRoute>,
+        element: <PrivateRoute><MyEquipmentsList></MyEquipmentsList></PrivateRoute>,
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
-    {
-        path: '/myList/:id',
-        element: <PrivateRoute></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)
-    },
+    // {
+    //     path: '/myList/:id',
+    //     element: <MyLists></MyLists>,
+    //     loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)
+    // },
     
     {
         path: '*',
