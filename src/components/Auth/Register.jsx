@@ -3,111 +3,93 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineGoogle } from "react-icons/ai";
-import Footer from '../Footer/Footer';
-import Navbar from '../Header/Navbar';
-import { validatePassword } from 'firebase/auth';
 
 const Register = () => {
-    const { signInUser, signInWithGoogle } = useContext(AuthContext);
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    const validatePassword = (password) => {
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters.');
+            return false;
+        }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])/;
+        if (!passwordRegex.test(password)) {
+            setError('Password must contain at least one uppercase and one lowercase letter.');
+            return false;
+        }
+
+        setError('');
+        return true;
+    };
+
     const googleSignIn = () => {
         signInWithGoogle()
-            .then(result => {
-                //  console.log(result.user);
+            .then(() => {
                 alert('Sign up successfully');
                 navigate('/');
             })
             .catch(error => {
-                //  console.log('ERROR', error.message);
+                console.error('Google Sign-In Error:', error.message);
+            });
+    };
 
-            })
-    }
-
-    const handelRegister = e => {
+    const handleRegister = (e) => {
         e.preventDefault();
 
         const name = e.target.name.value;
         const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, photo, email, password);
 
-        if (password.length < 6) {
-            setError('Password must be at least 6 characters.');
+        if (!validatePassword(password)) {
             return;
         }
-        const validatePassword = (password) => {
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])$/;
-            if (!passwordRegex.test(password)) {
-                setError('At least one uppercase, at one least one lowercase.');
-                return;
-            }
-        }
-
-
 
         createUser(email, password)
             .then(result => {
-                console.log(result.user);
-                alert('Register successfully');
+                alert('Registered successfully');
 
-                const newUser = {name, email};
-
+                const newUser = { name, email };
                 fetch('https://sports-equipment-online-store-server.vercel.app/users', {
                     method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
+                    headers: { 'content-type': 'application/json' },
                     body: JSON.stringify(newUser)
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log('user create db', data);
-                        if (data.insertedId) {
-                            console.log()
-                        }
-                    })
+                        console.log('User saved to DB:', data);
+                        navigate('/');
+                    });
 
                 e.target.reset();
 
                 updateUserProfile({
                     displayName: name,
                     photoURL: photo,
-                })
-                    .then(() => {
-                        navigate('/');
-                    })
-
-                // send user data in server
-
-
+                }).then(() => {
+                    navigate('/');
+                }).catch(error => console.error('Profile update error:', error));
             })
             .catch(error => {
-                console.log(error.message, 'ERROR')
-            })
-
-        validatePassword();
-
-        navigate('/')
-    }
+                setError(error.message);
+                console.error('Registration Error:', error.message);
+            });
+    };
 
     return (
-        <>
-            <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
-                {/* <Navbar></Navbar> */}
-            </div>
+        <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
             <div className="hero min-h-screen pt-8">
-                <div className=" flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
+                <div className="flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
                     <div className="text-center">
                         <h1 className="text-2xl font-bold">Register Now!</h1>
                     </div>
-                    <form onSubmit={handelRegister} className="card-body w-full">
+                    <form onSubmit={handleRegister} className="card-body w-full">
                         <div className="form-control">
-                            <button onClick={googleSignIn} className='btn text-base'>
+                            <button type="button" onClick={googleSignIn} className='btn text-base'>
                                 <AiOutlineGoogle className='text-2xl text-green-600' />
                                 Continue With Google
                             </button>
@@ -128,7 +110,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input bg-base-200 rounded-none" required />
+                            <input type="email" name='email' placeholder="Email" className="input bg-base-200 rounded-none" required />
                         </div>
                         <div className="form-control relative">
                             <label className="label">
@@ -137,27 +119,27 @@ const Register = () => {
                             <input
                                 type={showPassword ? 'text' : "password"}
                                 name='password'
-                                placeholder="password"
+                                placeholder="Password"
                                 className="input bg-base-200"
                                 required />
-                            <a onClick={() => setShowPassword(!showPassword)} className='btn btn-xs absolute right-3 top-12'>
-                                {
-                                    showPassword ? <FaRegEyeSlash /> : <FaRegEye />
-                                }
-                            </a>
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className='btn btn-xs absolute right-3 top-12'>
+                                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                            </button>
                         </div>
-                        {error && (
-                            <div className='text-red-400 text-sm mb-4'>{error}</div>
-                        )}
+                        {error && <div className='text-red-400 text-sm mb-4'>{error}</div>}
                         <div className="form-control mt-6">
-                            <button to='/home' className="btn bg-teal-600 text-white">Register</button>
+                            <button type="submit" className="btn bg-teal-600 text-white">Register</button>
                         </div>
                     </form>
-                    <p className='text-gray-600 font-semibold'>Already Have An Account? <Link className='text-teal-700' to='/login'>Login</Link></p>
+                    <p className='text-gray-600 font-semibold'>
+                        Already Have An Account? <Link className='text-teal-700' to='/login'>Login</Link>
+                    </p>
                 </div>
             </div>
-            {/* <Footer></Footer> */}
-        </>
+        </div>
     );
 };
 

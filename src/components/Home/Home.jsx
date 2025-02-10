@@ -7,6 +7,7 @@ import Categories from '../Products/Categories';
 import Equipments from '../Equipments/Equipments';
 import Brand from '../OurBrand/Brand';
 import NewsLetter from '../NewsLetter/NewsLetter';
+import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 
 const Home = () => {
     return (
@@ -25,14 +26,19 @@ const Home = () => {
             </section>
             {/* main section */}
             <main className='max-w-7xl mx-auto my-8'>
-                <section className='gap-4'>
+                <section className='flex gap-4'>
+                    <div className='w-3/10'>
                     <Categories></Categories>
-                </section>
-                <section>
+                    </div>
+                    <div className='w-7/10'>
                     <Equipments></Equipments>
+                    </div>
                 </section>
                 <section>
                     <Brand></Brand>
+                </section>
+                <section>
+                    <FeaturedProduct></FeaturedProduct>
                 </section>
                 <section>
                     <NewsLetter></NewsLetter>

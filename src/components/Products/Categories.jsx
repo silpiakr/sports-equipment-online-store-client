@@ -14,9 +14,9 @@ const Categories = () => {
     }, [])
 
     return (
-        <div className='flex'>
-            <h2 className='text-xl font-bold py-4 px-4'>Category:</h2>
-            <div className='flex flex-wrap items-center gap-6 bg-slate-100 px-8 py-3 rounded-2xl'>
+        <div className=''>
+            <h2 className='text-gray-800 text-center py-6 font-bold text-2xl md:text-4xl'>Category:</h2>
+            <div className='flex flex-col items-center gap-6 bg-slate-100 px-8 py-3 rounded-2xl'>
             {
                 categories.map((categoryItem, idx) => <Category key={idx} categoryItem={categoryItem} setCategories={setCategories}></Category>)
             }

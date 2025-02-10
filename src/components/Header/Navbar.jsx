@@ -48,13 +48,13 @@ const Navbar = () => {
                 {user ? (
                     <div className='flex items-center gap-3'>
                         <div className='group'>
-                            <Link to='/profile'>
+                            <>
                                 {user.photoURL ? (
                                     <img src={user.photoURL} alt="user" className='w-8 h-8 rounded-full cursor-pointer' />
                                 ) : (
                                     <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
                                 )}
-                            </Link>
+                            </>
                             <div className='absolute left-0 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
                                 {user.displayName || 'User'}
                             </div>

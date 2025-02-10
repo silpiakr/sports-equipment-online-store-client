@@ -6,9 +6,8 @@ const EquipmentCard = ({ equipment, equipments, setEquipments }) => {
 
     return (
         <div>
-            
-            <div className="card w-56 md:w-72 mx-auto">
-                <figure className='w-[150px] h-[150px] mx-auto'>
+            <div className="card border w-64 md:w-72 mx-auto">
+                <figure className='w-[160px] h-[160px] mx-auto p-3'>
                     <img
                         src={photo}
                         className='w-full object-cover p-3 mx-auto'

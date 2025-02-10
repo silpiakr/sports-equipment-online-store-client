@@ -7,8 +7,8 @@ const NewsLetter = () => {
             style={{
                 backgroundImage: "url()",
             }}>
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content flex flex-col md:flex-row items-end justify-normal text-neutral-content text-left gap-0 py-12">
+            <div className="hero-overlay bg-opacity-30"></div>
+            <div className="hero-content flex flex-col md:flex-row items-end justify-normal text-gray-800 text-left gap-0 py-12">
                 <div className="">
                     <h1 className="mb-5 text-4xl font-bold">SUBSCRIBE <br />
                         FOR NEWSLETTER.</h1>
@@ -21,11 +21,11 @@ const NewsLetter = () => {
                         <input
                             type="text"
                             placeholder="Your email address..."
-                            className="input rounded-none input-bordered w-full max-w-xs"
+                            className="input rounded-none input-bordered w-full max-w-xs text-black focus-visible:outline-none"
                         />
                     </div>
                     <div>
-                        <input type="submit" value="Submit" className='btn btn-accent rounded-none' />
+                        <input type="submit" value="Submit" className='btn bg-green-300 border-none rounded-none' />
                     </div>
                 </div>
             </div>
