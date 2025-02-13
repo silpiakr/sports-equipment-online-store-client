@@ -5,7 +5,6 @@ import Navbar from '../components/Header/Navbar';
 import Banner from '../components/Header/Banner';
 import Footer from '../components/Footer/Footer';
 import AddEquipment from '../components/Equipments/AddEquipment';
-import Users from '../components/Auth/Users';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import Equipments from '../components/Equipments/Equipments';
 import Details from '../components/Equipments/Details';
@@ -15,7 +14,6 @@ import EquipmentList from '../components/Equipments/EquipmentList';
 import Categories from '../components/Products/Categories';
 import PrivateRoute from '../Route/PrivateRoute';
 import UpdateEquipment from '../components/Equipments/UpdateEquipment';
-import MyLists from '../components/Equipments/MyLists';
 import MyEquipmentsList from '../components/Equipments/MyEquipmentsList';
 
 const router = createBrowserRouter([
@@ -45,10 +43,6 @@ const router = createBrowserRouter([
         element: <Register></Register>
     },
     {
-        path: '/users',
-        element: <Users></Users>
-    },
-    {
         path: 'categories/:category',
         element: <Categories></Categories>,
         
@@ -76,19 +70,14 @@ const router = createBrowserRouter([
     
     {
         path: '/equipmentList',
-        element: <PrivateRoute><EquipmentList></EquipmentList></PrivateRoute>,
+        element: <EquipmentList></EquipmentList>,
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
     },
     {
         path: '/myEquipmentList',
         element: <PrivateRoute><MyEquipmentsList></MyEquipmentsList></PrivateRoute>,
         loader: () => fetch('https://sports-equipment-online-store-server.vercel.app/equipment')
-    },
-    // {
-    //     path: '/myList/:id',
-    //     element: <MyLists></MyLists>,
-    //     loader: ({ params }) => fetch(`https://sports-equipment-online-store-server.vercel.app/equipment/${params.id}`)
-    // },
+    },  
     
     {
         path: '*',

@@ -7,12 +7,13 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase/firebase.init';
 import Footer from '../Footer/Footer';
 import Navbar from '../Header/Navbar';
+import Swal from 'sweetalert2';
 
 
 
 const Login = () => {
 
-    const {signInUser, signInWithGoogle} = useContext(AuthContext);
+    const { signInUser, signInWithGoogle } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
     const [success, setSuccess] = useState(false);
     const [loginError, setLoginError] = useState(false);
@@ -25,21 +26,26 @@ const Login = () => {
 
         const email = e.target.email.value;
         const password = e.target.password.value;
-       console.log(email, password);
+        console.log(email, password);
 
         signInUser(email, password)
-        .then(result => {
-           console.log(result.user);
-            setSuccess(true);
-            e.target.reset();
-            navigate('/');
+            .then(result => {
+                console.log(result.user);
+                setSuccess(true);
+                e.target.reset();
 
-            alert('login successfully!');
-        })
-        .catch(error => {
-           console.log('ERROR', error.message);
-            setLoginError(true);
-        })
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login Successfully!",
+                    icon: "success",
+                });
+
+                navigate('/');
+            })
+            .catch(error => {
+                console.log('ERROR', error.message);
+                setLoginError(true);
+            })
 
         localStorage.setItem('user', JSON.stringify(sanitizedUser));
         setUser();
@@ -47,45 +53,50 @@ const Login = () => {
     }
     const googleSignIn = () => {
         signInWithGoogle()
-        .then(result => {
-           console.log(result.user);
-            setSuccess(true);
+            .then(result => {
+                console.log(result.user);
+                setSuccess(true);
 
-            alert('Login with Google successfully!');
-            navigate('/');
-        })
-        .catch(error => {
-           console.log('ERROR', error.message);
-            setLoginError(true);
-        })
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login with Google successfully!",
+                    icon: "success",
+                });
+
+                navigate('/');
+            })
+            .catch(error => {
+                console.log('ERROR', error.message);
+                setLoginError(true);
+            })
     }
 
     const handleForgetPassword = () => {
-       console.log('get email for change password', emailRef.current.value);
+        console.log('get email for change password', emailRef.current.value);
         const email = emailRef.current.value;
-        if(!email){
+        if (!email) {
             alert('Invalid email');
         }
-        else{
+        else {
             sendPasswordResetEmail(auth, email)
-            .then(() => {
-                alert('Password reset email sent, check your email');
-            })
+                .then(() => {
+                    alert('Password reset email sent, check your email');
+                })
         }
 
         navigate(`/forgotPassword?email=${encodeURIComponent(email)}`);
     }
 
     return (
-       <>
-       <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
-        <Navbar></Navbar>
-       </div>
-        <div className="hero bg-base-200 min-h-screen">
+        <>
+            <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
+                <Navbar></Navbar>
+            </div>
+            <div className="hero bg-base-200 min-h-screen">
                 <div className=" flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold">Login Now!</h1>
-                </div>
+                    <div className="text-center">
+                        <h1 className="text-2xl font-bold">Login Now!</h1>
+                    </div>
                     <form onSubmit={handleLogin} className="card-body w-full">
                         <div className="form-control">
                             <button onClick={googleSignIn} className='btn text-base'>
@@ -103,11 +114,11 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type={showPass ? 'text' : "password" } name='password' placeholder="password" className="input bg-base-200" required />
+                            <input type={showPass ? 'text' : "password"} name='password' placeholder="password" className="input bg-base-200" required />
                             <a onClick={() => setShowPass(!showPass)} className='btn btn-xs absolute right-3 top-12'>
                                 {
                                     showPass ? <FaRegEyeSlash /> : <FaRegEye />
-                                } 
+                                }
                             </a>
                             <label onClick={handleForgetPassword} className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
@@ -126,9 +137,9 @@ const Login = () => {
                         loginError && <p className='text-red-500'>Login failed</p>
                     }
                 </div>
-        </div>
-       <Footer></Footer>
-       </>
+            </div>
+            <Footer></Footer>
+        </>
     );
 };
 

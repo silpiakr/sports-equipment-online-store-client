@@ -11,7 +11,7 @@ import Lottie from 'lottie-react';
 const FeaturedProduct = () => {
     return (
         <div className='my-12'>
-            <h2 className='text-gray-800 text-center py-6 font-bold text-3xl md:text-4xl'>Our Latest Products</h2>
+            <h2 className='text-center py-6 font-bold text-3xl md:text-4xl'>Our Latest Products</h2>
             <div className='flex items-center bg-red-50'>
                 <div className='w-1/3 mx-auto'>
                     <Lottie animationData={shoppingBag}></Lottie>

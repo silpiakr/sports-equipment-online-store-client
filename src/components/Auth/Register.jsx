@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineGoogle } from "react-icons/ai";
+import Swal from 'sweetalert2';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 
 const Register = () => {
     const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
@@ -29,7 +32,12 @@ const Register = () => {
     const googleSignIn = () => {
         signInWithGoogle()
             .then(() => {
-                alert('Sign up successfully');
+                Swal.fire({
+                    title: "Success!",
+                    text: "Sign up successfully",
+                    icon: "success",
+                });
+                
                 navigate('/');
             })
             .catch(error => {
@@ -51,7 +59,11 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
-                alert('Registered successfully');
+                Swal.fire({
+                    title: "Success!",
+                    text: 'Successfully Registered!',
+                    icon: "success",
+                });
 
                 const newUser = { name, email };
                 fetch('https://sports-equipment-online-store-server.vercel.app/users', {
@@ -77,11 +89,13 @@ const Register = () => {
             .catch(error => {
                 setError(error.message);
                 console.error('Registration Error:', error.message);
+                navigate('/register');
             });
     };
 
     return (
         <div className='md:max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto'>
+            <Navbar></Navbar>
             <div className="hero min-h-screen pt-8">
                 <div className="flex flex-col justify-center items-center card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-8">
                     <div className="text-center">
@@ -139,6 +153,7 @@ const Register = () => {
                     </p>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

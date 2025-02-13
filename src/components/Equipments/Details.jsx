@@ -3,9 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Details = () => {
-    const { user, cart, setCart} = useContext(AuthContext);
+    const { user, cart, setCart } = useContext(AuthContext);
     const userId = user?.id;
 
     const loadedParams = useLoaderData();
@@ -19,19 +20,29 @@ const Details = () => {
             },
             body: JSON.stringify({ userId: _id, itemId: _id }),
         })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            if (data.insertedId || data.acknowledged) {
-                alert('Product added to My List!');
-            } else {
-                alert('Failed to add product. Please try again.');
-            }
-        })
-        .catch((err) => console.error('Error adding to My List:', err));
-    
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.insertedId || data.acknowledged) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${name} Equipment added to My Equipments List.`,
+                        icon: "success",
+                    });
+                   
+                } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: `${name} Equipment added failed.`,
+                        icon: "Error",
+                    });
+                  
+                }
+            })
+            .catch((err) => console.error('Error adding to My List:', err));
+
     };
-    
+
 
     return (
         <>
@@ -68,5 +79,3 @@ const Details = () => {
 };
 
 export default Details;
-
-// {`/myList/${_id}`}

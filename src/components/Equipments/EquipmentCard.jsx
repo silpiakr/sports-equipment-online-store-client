@@ -24,6 +24,9 @@ const EquipmentCard = ({ equipment, equipments, setEquipments }) => {
                 <Link to={`/details/${_id}`} className='pb-5 text-center mr-6 mt-0 pt-0'>
                     <button className='btn'>Details</button>
                 </Link>
+                {/* <Link to={`/showDetails/${_id}`} className='pb-5 text-center mr-6 mt-0 pt-0'>
+                    <button className='btn'>Show Details</button>
+                </Link> */}
             </div>
         </div >
     );

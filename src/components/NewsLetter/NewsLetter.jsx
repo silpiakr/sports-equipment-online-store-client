@@ -8,7 +8,7 @@ const NewsLetter = () => {
                 backgroundImage: "url()",
             }}>
             <div className="hero-overlay bg-opacity-30"></div>
-            <div className="hero-content flex flex-col md:flex-row items-end justify-normal text-gray-800 text-left gap-0 py-12">
+            <div className="hero-content flex flex-col md:flex-row items-end justify-normal text-left gap-0 py-12">
                 <div className="">
                     <h1 className="mb-5 text-4xl font-bold">SUBSCRIBE <br />
                         FOR NEWSLETTER.</h1>

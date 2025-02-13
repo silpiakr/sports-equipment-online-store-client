@@ -13,43 +13,7 @@ const MyEquipmentsList = () => {
     const userId = user?._id;
     const [myList, setMyList] = useState([]);
 
-    // useEffect(() => {
-    //     fetch(`https://sports-equipment-online-store-server.vercel.app/my-list/${_id}`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             const sortedList = data.sort((a, b) => b.itemDetails.price - a.itemDetails.price);
-    //             setMyList(sortedList);
-    //         })
-    //         .catch((err) => console.error('Error fetching My List:', err));
-    // }, [userId]);
-
-    // const handleDelete = (_id) => {
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             fetch(`https://sports-equipment-online-store-server.vercel.app/${_id}`, {
-    //                 method: 'DELETE',
-    //             })
-    //                 .then((res) => res.json())
-    //                 .then((data) => {
-    //                     if (data.deletedCount > 0) {
-    //                         Swal.fire("Deleted!", "The item has been removed from your list.", "success");
-    //                         const remainingItems = myList.filter((item) => item._id !== id);
-    //                         setMyList(remainingItems);
-    //                     }
-    //                 })
-    //                 .catch((error) => console.error("Error deleting item:", error));
-    //         }
-    //     });
-    // };
-
+ 
     useEffect(() => {
         if (!userId) return;
 
@@ -106,7 +70,7 @@ const MyEquipmentsList = () => {
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                <Link to={`/updateEquipment/${equipment._id}`}>
+                                <Link to={`/updateEquipment/${item._id}`}>
                                     <button className='btn bg-red-100'>
                                         Update
                                     </button>
